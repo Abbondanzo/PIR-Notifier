@@ -1,7 +1,14 @@
 "use strict";
 
 const dotenv = require("dotenv").config();
+if (dotenv.error) {
+  throw "No .env file configured! Rename the .envexample file to .env!";
+}
+
 const Gpio = require("onoff").Gpio;
+
+// Enable promise cancellation
+process.env.NTBA_FIX_319 = 1;
 const TelegramBot = require("node-telegram-bot-api");
 
 const config = {
@@ -14,8 +21,22 @@ const config = {
   botToken: process.env.TELEGRAM_BOT_TOKEN
 };
 
-const bot = new TelegramBot(config.botToken, { polling: true });
-const sensor = new Gpio(config.sensorPin, "in", "both");
+// Only enable polling if we are reading from Gpio
+const bot = new TelegramBot(config.botToken, { polling: Gpio.accessible });
+
+let sensor;
+if (Gpio.accessible) {
+  sensor = new Gpio(config.sensorPin, "in", "both");
+} else {
+  sensor = {
+    watch: function(callback) {
+      console.log("Watching virtual sensor");
+    },
+    read: function(callback) {
+      console.log("Reading virtual sensor");
+    }
+  };
+}
 
 let timeout = false;
 let motionCount = 0;
