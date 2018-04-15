@@ -1,0 +1,21 @@
+{
+  "name": "pir-notifier",
+  "version": "1.0.0",
+  "description": "Reusable tool to send notifications from a device hooked up to a PIR sensor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pir",
+    "node"
+  ],
+  "author": "Peter Abbondanzo",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "node-telegram-bot-api": "^0.30.0",
+    "onoff": "^3.0.2"
+  }
+}
