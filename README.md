@@ -6,7 +6,7 @@ I wrote this simple Node app to send push notifications directly to Telegram. Al
 
 Run `npm install`. While that's installing, rename your `.envexample` file to just `.env`. Those two tokens will be read automatically, so you can generate them by visting [here](https://core.telegram.org/bots#3-how-do-i-create-a-bot). You've also got a handful of other customizations:
 |Config Name|Value Type|Description|
-|-|-|-|
+|---|---|---|
 |`sensorPin`|Integer|Here's where you put the digital input GPIO pin number. Do not put the pin number, that is the wrong number! See [this diagram](https://i.stack.imgur.com/KL4PZ.png) for help. For example, pin #11 is GPIO #17, so I would use `17`.|
 |`motionDetected`|Integer|You can leave this number at `1` for the signal received from `onoff` if there is motion. If you want to detect lack of motion, change it to `0`.|
 |`minimumMotionDuration`|Integer|Specify the number of seconds you want the motion to be before triggering message sending to Telegram. If you set this to `0`, messages will be sent automatically if there is no timeout.|
