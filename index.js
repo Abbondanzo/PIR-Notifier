@@ -28,6 +28,9 @@ let sensor;
 if (Gpio.accessible) {
   sensor = new Gpio(config.sensorPin, "in", "both");
 } else {
+  console.log(
+    "Using a virtual sensor since we cannot detect Gpio accessibility"
+  );
   sensor = {
     watch: function(callback) {
       console.log("Watching virtual sensor");
